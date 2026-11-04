@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,8 +62,14 @@
 
                 const data = await response.json();
 
-                result.textContent =
-                    "Contributor Student ID: " + data.contributorStudentId;
+                const studentId = data.contributorStudentID || data.contributorStudentId;
+
+                if (studentId) {
+                    result.textContent = "Contributor Student ID: " + studentId;
+                } else {
+                    result.textContent = "Ошибка: ID не найден в файле JSON.";
+                }
+                
             } catch (error) {
                 result.textContent = "Error: " + error.message;
             }
